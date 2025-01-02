@@ -2,9 +2,6 @@
 import sqlite3 from "sqlite3";
 sqlite3.verbose();
 const db = new sqlite3.Database("SEQ_GTFS/data.db");
-db.on("trace", (query) => {
-  console.log(`RAN SQL QUERY: ${query}`);
-});
 
 export async function getOneRow(query): Promise<object> {
   return new Promise((resolve, reject) => {
