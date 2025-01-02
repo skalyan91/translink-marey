@@ -57,3 +57,23 @@ LIMIT 10
 
   return result as RouteResult[];
 }
+
+export async function getRouteInfo(routeId: string): Promise<RouteResult> {
+  /**
+   * Return information about a specific route (keyed by routeId)
+   **/
+  const result = await getOneRow(
+    `
+
+SELECT
+route_id AS routeId,
+route_short_name AS routeShortName,
+route_long_name AS routeLongName
+FROM routes
+WHERE route_id = ?
+`,
+    [routeId],
+  );
+
+  return result as RouteResult;
+}
