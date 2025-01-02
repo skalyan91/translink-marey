@@ -3,9 +3,9 @@ import sqlite3 from "sqlite3";
 sqlite3.verbose();
 const db = new sqlite3.Database("SEQ_GTFS/data.db");
 
-export async function getOneRow(query): Promise<object> {
+export async function getOneRow(query, params): Promise<object> {
   return new Promise((resolve, reject) => {
-    db.get(query, function (err, row) {
+    db.get(query, params, function (err, row) {
       if (err != undefined) {
         reject(err);
       } else {
@@ -27,7 +27,7 @@ export async function getManyRows(query, params): Promise<object> {
   });
 }
 export async function getStopCount(): Promise<number> {
-  const result = await getOneRow("SELECT COUNT(*) as count from routes");
+  const result = await getOneRow("SELECT COUNT(*) as count from routes", []);
   return (result as any).count as number;
 }
 
