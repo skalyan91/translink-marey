@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { RouteResult, getStopCount, searchRoutes } from "./database";
+import { RouteResult, searchRoutes } from "./database";
 
 function SearchResult(props: { route: RouteResult }) {
   let { route } = props;
