@@ -79,6 +79,7 @@ WHERE route_id = ?
 }
 
 interface TripStop {
+  tripId: string;
   arrivalTime: string;
   stopName: string;
 }
@@ -89,6 +90,7 @@ export async function getTripStopsForATrip(
   const result = await getManyRows(
     `
 SELECT
+  trip_id as tripId,
 	arrival_time as arrivalTime,
 	stops.stop_name as stopName
  from stop_times
@@ -98,18 +100,8 @@ where trip_id IN (
   SELECT trip_id
   FROM trips
   where route_id = ?
-  limit 1
 )
 ORDER BY stop_sequence;
-SELECT * from stop_times
-where trip_id IN (
-  SELECT trip_id
-  FROM trips
-  where route_id IN (SELECT route_id
-    FROM routes
-    WHERE route_short_name = 444)
-  limit 1
-) ORDER BY stop_sequence;
 `,
     [routeId],
   );
