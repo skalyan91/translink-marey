@@ -78,14 +78,14 @@ WHERE route_id = ?
   return result as RouteResult;
 }
 
-interface RouteDetails {
+interface TripStop {
   arrivalTime: string;
   stopName: string;
 }
 
-export async function getRouteDetails(
+export async function getTripStopsForATrip(
   routeId: string,
-): Promise<RouteDetails[]> {
+): Promise<TripStop[]> {
   const result = await getManyRows(
     `
 SELECT
@@ -113,5 +113,5 @@ where trip_id IN (
 `,
     [routeId],
   );
-  return result;
+  return result as TripStop[];
 }
