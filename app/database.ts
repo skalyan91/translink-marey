@@ -9,7 +9,7 @@ export async function getOneRow(query, params): Promise<object> {
       if (err != undefined) {
         reject(err);
       } else {
-        resolve(row);
+        resolve(row as object);
       }
     });
   });

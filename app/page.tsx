@@ -9,7 +9,7 @@ function SearchResult(props: { route: RouteResult }) {
     <dl>
       <dt>Route Name</dt>
       <dd>
-        {route.routeLongName} ({route.routeShortName})
+        <a href={`/${route.routeId}`}>{route.routeLongName} ({route.routeShortName})</a>
       </dd>
     </dl>
   );
