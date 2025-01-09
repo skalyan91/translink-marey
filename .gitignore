@@ -132,5 +132,3 @@ dist
 
 # the database itself
 SEQ_GTFS/data.db
-
-.DS_Store
